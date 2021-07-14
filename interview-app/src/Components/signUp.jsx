@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './styles.css';
-import {Submit} from './styledComponent'
+import {Submit, Input, DivForm, Input2, Label2, Header, Label} from './styledComponent'
 import axios from 'axios'
-
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import logo from '../assets/Logo.png'
 
 export class SignUp extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ export class SignUp extends Component {
     this.handleChangeConfirmPassword = this.handleChangeConfirmPassword.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
+    document.body.style.backgroundColor = "#222e50";
   }
 
 
@@ -44,7 +46,6 @@ export class SignUp extends Component {
   }
 
   handleSubmit(event) {
-    //alert('data is: ' + this.state.email + ', ' + this.state.password);
     event.preventDefault();
     if(this.state.password == this.state.confirmPassword){
       const registeredUser ={
@@ -54,14 +55,10 @@ export class SignUp extends Component {
         password:this.state.password
       }
       axios.post("http://localhost:4000/app/auth/signup", registeredUser)
-      .then(response => console.log(response.data));
-
-      this.setState({
-        firstName:'',
-        lastName:'',
-        email:'',
-        password:'',
-        confirmPassword:''
+      .then(response =>{ 
+        localStorage.setItem('token', response.data);
+        document.body.style.backgroundColor = "white";
+        this.props.history.push("/home");
       });
     }
     else{
@@ -75,43 +72,44 @@ export class SignUp extends Component {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>Sign in</title>
-        <div className="div-form">
+        <DivForm>
           <br></br>
-          <h1>Ship-ME</h1>
-          <h2>Sign up</h2>
+          <img src ={logo} width="225" height="50"></img>
+          <Header>Sign up</Header>
           <form onSubmit={this.handleSubmit}>
             <span>
-                <label className="label2">First name</label>
-                <label className="label2">Last name</label>
+                <Label2 >First name</Label2>
+                <Label2 >Last name</Label2>
                 <br></br>
-                <input className="input2" type="text" name="fName" onChange={this.handleChangeFirstName} autoFocus required ></input>
-                <input className="input2" type="text" name="lName" onChange={this.handleChangeLastName} required></input>
+                <Input2 type="text" name="fName" onChange={this.handleChangeFirstName} autoFocus required ></Input2>
+                <Input2 type="text" name="lName" onChange={this.handleChangeLastName} required></Input2>
                 <br></br>
             </span>
             <br></br>
-            <label for="emailBox">Email address </label>
+            <Label for="emailBox">Email address </Label>
             <br></br>
-            <input id="emailBox" type="email" name="email" placeholder="name@company.com" title="Must be a valid email address." onChange={this.handleChangeEmail} required></input>
-            <br></br>
-            <br></br>
-            <label for="passwordBox">Password </label>
-            <br></br>
-            <input id="passwordBox" type="password" name="pass" pattern="(?=.*\d)(?=.*[A-Z])(?=.*[$+,:;=?@#|'<>.-^*()%!]).{8,8}" title="Password must match the restrictions!" onChange={this.handleChangePassword} required></input>
+            <Input id="emailBox" type="email" name="email"  title="Must be a valid email address." onChange={this.handleChangeEmail} required></Input>
             <br></br>
             <br></br>
-            <label for="confirmPasswordBox">Confirm password </label>
+            <Label for="passwordBox">Password </Label>
             <br></br>
-            <input id="confirmPasswordBox" type="password" name="confirmPass" pattern="(?=.*\d)(?=.*[A-Z])(?=.*[$+,:;=?@#|'<>.-^*()%!]).{8,8}" title="Password must match the restrictions!" onChange={this.handleChangeConfirmPassword} required></input>
+            <Input id="passwordBox" type="password" name="pass" pattern="(?=.*\d)(?=.*[A-Z])(?=.*[$+,:;=?@#|'<>.-^*()%!]).{8,8}" title="Password must match the restrictions!" onChange={this.handleChangePassword} required></Input>
+            <br></br>
+            <br></br>
+            <Label for="confirmPasswordBox">Confirm password </Label>
+            <br></br>
+            <Input id="confirmPasswordBox" type="password" name="confirmPass" pattern="(?=.*\d)(?=.*[A-Z])(?=.*[$+,:;=?@#|'<>.-^*()%!]).{8,8}" title="Password must match the restrictions!" onChange={this.handleChangeConfirmPassword} required></Input>
             <br></br>
             <br></br>
             <br></br>
             <Submit type="submit" value="Sign Up"></Submit>
             <br></br>
             <br></br>
+            <Link to="/">Already a User?</Link>
             <br></br>
             <br></br>
           </form>
-        </div>
+        </DivForm>
       </div>
     );
     

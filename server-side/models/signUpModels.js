@@ -17,7 +17,10 @@ const signUpTemplate = new mongoose.Schema({
         type:String,
         required:true
     },
+    userType:{
+        type:String,
+    }
 
 });
 
-module.exports = mongoose.model('signUpTable',signUpTemplate);
+module.exports = mongoose.model('authTable',signUpTemplate);

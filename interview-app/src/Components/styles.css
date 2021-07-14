@@ -1,65 +1,126 @@
-.div-form{
-    color:black;
-    text-align: center;
-    /* border-radius: 2%; */
-    background-color: #ffffff;
-    height:100%;
-    width:40%;
-    margin:auto;
-    margin-top: 5%; 
-}
-
-body{
+/* body{
     background-color:#222e50;
-}
+} */
 
-input{
-    /* border-radius: 8px; */
-    height:30px;
-    width:60%;
-}
-.input2{
-    margin-right:4.2%;
-    margin-left: 4.2%;
-    /* border-radius: 8px; */
-    height:30px;
-    width:25%;
-}
 
-.label2{
-    
-    
-    margin-right:18.3%;
-    margin-left: 4%;
-    
-    height:30px;
-    width:25%;
-    font-size: 12px;
-    font-weight: bold;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.input1{
-    height:10px;
-    width:10px;
-}
 
-h1{
-    color: #222e50;
-}
-
-form > label{
-    /* border-radius: 8px; */
+.dropbtn {
+    border-radius:100%;
+    width:36px;
+    height:42px;
+  }
+  .actiondropbtn {
+    border-radius:100%;
+    width:36px;
+    height:36px;
+  }
+  
+  .dropdown {
+    position:absolute;
+    margin-left:68%;
+    display: inline-block;
+  }
+  
+  .actiondropdown{
     display:block;
-    float:left;
-    justify-content: left;
-    margin-left: 19.2%;
+    
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right:-30px;
+    background-color: #f9f9f9;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .actiondropdown-content {
+    display: none;
+    position: absolute;
+    right:40px;
+    background-color: #f9f9f9;
+    min-width: 125px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 2px 10px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .actiondropdown-content a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 11px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  .actiondropdown-content a:hover {background-color: #f1f1f1}
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .actiondropdown:hover .actiondropdown-content {
+    display: block;
+  }
+
+
+  * {
+    box-sizing: border-box;
+  }
+
+
+  
+  #myInput {
+    background-image: url("../assets/Search.jpg");
+    background-position: 99% 8px;
+    background-repeat: no-repeat;
+    background-size: 15px;
+    width: 18%;
     font-size: 12px;
-    font-weight: bold;
+    padding: 8px 8px 8px 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    margin-top:30px;
+    margin-left: 1.5%;
+  }
+  
+  #myTable {
+    border-collapse: collapse;
+    width: 98%;
+    margin-left:1%;
+    font-size: 11px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.checkboxtext{
-    font-size: 13px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-
+  }
+  
+  #myTable th{
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    padding: 12px 12px;
+  }
+  #myTable td {
+    text-align: left;
+    padding: 4px 12px;
+  }
+  
+  /* #myTable tr {
+    border-bottom: 1px solid #ddd;
+  } */
+  
+  #tblBtn{
+    height:36px;
+    width:36px;
+  }
+  #myTable tr:hover {
+    text-decoration: underline;
+  }
+  
+  

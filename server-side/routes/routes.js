@@ -1,73 +1,64 @@
 const express = require('express');
 const router = express.Router();
-const userModel = require('../models/signUpModels');
+const authModel = require('../models/signUpModels');
 const bcrypt = require('bcrypt');
 const Joi = require('@hapi/joi');
 const jwt = require('jsonwebtoken');
 const verifyToken = require('./verifyjwt');
+const userModel = require('../models/userModel');
+const companyModel = require('../models/companyModel');
 
-router.post('/signup', async function(req,res){
-    
-    const schema ={
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
-        email: Joi.string().email().required(),
-        password: Joi.string().required(),
-    }
-    const {error} = Joi.validate(req.body, schema);
-    if(error){
-        return res.send(error.details[0].message);
-    }
-    
-    const saltPassword = await bcrypt.genSalt(10);
-    const securePassword = await bcrypt.hash(req.body.password, saltPassword);
+// super admin companies management routes
 
-    const signedUpUser = await new userModel({
-        firstName:req.body.firstName,
-        lastName:req.body.lastName,
-        email:req.body.email,
-        password:securePassword,
-    })
-    
-    const token = jwt.sign({email:req.body.email}, process.env.TOKEN);
-    signedUpUser.save()
+// display all collections of existing companies
+router.get('/getcomps',async function (req,res){
+    const companies = await companyModel.find({});
     try{
-        res.send(token);
+        res.send(companies);
+    }catch(err){
+        res.send(err);
+    }
+});     
+
+// add a new company to the companies collections (Super admin only)
+router.post('/newcomp', async function(req,res){
+
+    const newCompany = await new companyModel({
+        companyManager:"",
+        companyName:req.body.companyName,
+        companyAddress:req.body.companyAddress,
+        city:req.body.companyCity,
+        state:req.body.companyState,
+        zipCode:req.body.companyZipCode,
+        companyPhone:req.body.companyPhone,
+        companyEmail:req.body.companyEmail,
+        companyWebsite:req.body.companyWebsite,
+        primaryContactName:req.body.primaryContactName,
+        primaryContactPhone:req.body.primaryContactPhone,
+        primaryContactJobTitle:req.body.primaryContactJobTitle,
+
+    });
+    newCompany.save()
+    try{
+        res.send(newCompany);
     }
     catch(error){
         res.send(error);
     }
-        // .then(data =>{
-        //     res.json(data);
-        // })
-        // .catch(error =>{
-        //     res.json(error);
-        // });
-});
+})
 
-router.post('/login', async function(req,res){
-    
-    const user = await userModel.findOne({email:req.body.email});
-    if(!user){
-        return res.send('invalid email adress.');
-    }
-    const passwordVerification = await bcrypt.compare(req.body.password, user.password);
-    if(!passwordVerification){
-        return res.send('invalid password.');
-    }
-    // if(req.body.password != user.password){
-    //     return res.send('invalid password.');
-    // }
-    const token = jwt.sign({email:req.body.email},process.env.TOKEN);
-    console.log("email and pass of user: ", user.email + " " + passwordVerification);
+// delete a chosen company from the companies collections (Super admin only)
+router.post('/delete', async function(req,res){
     try{
-        res.send(token);
+        const deletedComp = await companyModel.findOneAndDelete({companyName:req.body.companyName});
+        console.log('deleted');
+        res.send(deletedComp);
+    }catch(err){
+        res.send(err);
     }
-    catch(error){
-        res.send(error);
-    }
-
-});
+    
+  
+})
 
 
 
