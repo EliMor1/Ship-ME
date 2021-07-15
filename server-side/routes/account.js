@@ -178,7 +178,7 @@ router.post("/account/delete", async function(req,res){
 router.post("/account/edit", async function(req,res){
     const userInCompany = await companyModel.findOne({companyName:req.body.companyName},{companyUsers:{companyUserName:req.body.firstName, companyUserRole:req.body.companyRole} })
     const user = userInCompany.companyUsers[0].companyUserName;
-    const userUpdated = await userModel.findOneAndUpdate({firstName:user},
+    const userUpdated = await userModel.findOneAndUpdate({firstName:user, primaryEmail:req.body.email},
         {
             jobTitle:req.body.jobTitle,
             primaryPhone:req.body.phone,

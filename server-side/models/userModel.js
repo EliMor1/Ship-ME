@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const userFeaturesTemplate = new mongoose.Schema({
     firstName:{
-        type:String,
-        required:true
+        //type:String,
+        
     },
     lastName:{
         type:String,
-        required:true
+        //required:true
     },
     jobTitle:{
         type:String,
