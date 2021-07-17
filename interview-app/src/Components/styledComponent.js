@@ -53,6 +53,17 @@ margin-left:67%;
 border:1px solid #ddd;
 &:hover{color:black;}`;
 
+export const AddNewUser  = styled.input`
+background-color: #007991;
+color: white;
+font-size: 12px;
+font-weight:bold;
+height:32px;
+width:10%;
+margin-left:69%;
+border:1px solid #ddd;
+&:hover{color:black;}`;
+
 export const Cancel = styled.input`
 background-color: white;
 color: black;
@@ -245,14 +256,34 @@ border-radius:100%;
 width:96px;
 height:96px;`;
 
+export const MinimizedImg = styled.img`
+border-radius:100%;
+margin-top:10px;
+margin-left:848px;
+width:28px;
+height:28px;`;
+
+export const BellImg = styled.img`
+border-radius:100%;
+margin-top:80%;
+margin-left:4400%;
+display:flex;
+width:18px;
+height:18px;`;
 
 
 export const DropLabel = styled.label`
 font-size: 12px;
 margin-bottom:10%;
 font-weight: bold;
-margin-left:75px;
+margin-left:8%;
 font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;`;
+
+export const DropImg = styled.label`
+margin-bottom:10%;
+border-radius:100%
+width:28px;
+height:28px;`;
 
 
 

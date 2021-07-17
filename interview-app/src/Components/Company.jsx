@@ -87,7 +87,7 @@ export class Company extends Component {
           }
           axios.post("http://localhost:4000/app/account/company/update", companySettings)
           .then(response => console.log(response));
-          
+          alert('company updated successfully!');
         }
 
     render() {

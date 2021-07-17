@@ -10,6 +10,7 @@ import Account from './Components/Account';
 import Companies from './Components/Companies';
 import ChooseCompany from './Components/ChooseCompany';
 import NewCompany from './Components/NewCompany';
+import NewUser from './Components/NewUser';
 import UnauthorizedPage from './Components/UnauthorizedPage';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path ="/account/companies" component = {Companies}/>
         <Route path ="/choose-company" component = {ChooseCompany}/>
         <Route path ="/account/new-company" component = {NewCompany}/>
+        <Route path ="/account/new-user" component = {NewUser}/>
         <Route path = '/unauthorized' component = {UnauthorizedPage}/>
       </Switch>
     </main>

@@ -141,7 +141,7 @@ router.post('/account/new-user', async function(req,res){
         secondaryEmail:"",
         companyName:undefined,
         companyRole:undefined,
-        userType:"user",
+        userType:req.body.userType,
         companies:[{companyName:req.body.companyName,companyRole:req.body.companyRole}],
     });
 

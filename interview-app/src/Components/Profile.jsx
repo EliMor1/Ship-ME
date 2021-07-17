@@ -81,6 +81,7 @@ export class Profile extends Component {
           }
           axios.post("http://localhost:4000/app/account/profile/update", profileSettings)
           .then(response => console.log(response));
+          alert('profile updated successfully!');
           
         } 
     render() {
